@@ -26,13 +26,14 @@ export const { toggleTimer } = (() => {
     const isRunning = !IS_RUNNING.value;
     IS_RUNNING.set(isRunning);
 
+    // Clear Interval
     if (timerRef != null) {
       clearInterval(timerRef);
+      timerRef = null;
     }
 
-    if (isRunning) {
-      timerRef = window.setInterval(incrementSeconds, 100);
-    }
+    // Start Interval
+    if (isRunning) timerRef = setInterval(incrementSeconds, 100);
   };
   return { toggleTimer };
 })();

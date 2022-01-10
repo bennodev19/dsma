@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useAtom } from 'jotai';
+import { useRecoilState } from 'recoil';
 import { runningAtom } from '../store';
 
 const TimerToggleView: React.FC = () => {
-  const [running, setRunning] = useAtom(runningAtom);
+  const [running, setRunning] = useRecoilState(runningAtom);
 
   return (
     <Container>

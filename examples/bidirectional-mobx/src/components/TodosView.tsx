@@ -1,20 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useAtom } from 'jotai';
-import { todosAtom } from '../store';
+import { observer } from 'mobx-react-lite';
+import store from '../store';
 
 const TodosView: React.FC = () => {
-  const [todos] = useAtom(todosAtom);
-
   return (
     <Container>
       <Title>Data</Title>
-      <Text>{todos != null ? JSON.stringify(todos) : 'No data fetched!'}</Text>
+      <Text>
+        {store.todos != null ? JSON.stringify(store.todos) : 'No data fetched!'}
+      </Text>
     </Container>
   );
 };
 
-export default TodosView;
+export default observer(TodosView);
 
 const Container = styled.div`
   display: flex;

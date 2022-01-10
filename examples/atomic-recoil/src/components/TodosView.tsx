@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useAtom } from 'jotai';
+import { useRecoilValue } from 'recoil';
 import { todosAtom } from '../store';
 
 const TodosView: React.FC = () => {
-  const [todos] = useAtom(todosAtom);
+  const todos = useRecoilValue(todosAtom);
 
   return (
     <Container>

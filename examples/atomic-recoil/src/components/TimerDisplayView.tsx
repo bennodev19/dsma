@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useAtom } from 'jotai';
+import { useRecoilValue } from 'recoil';
 import { secondsAtom } from '../store';
 
 const TimerDisplayView: React.FC = () => {
-  const [seconds] = useAtom(secondsAtom);
+  const seconds = useRecoilValue(secondsAtom);
 
   return (
     <Text>

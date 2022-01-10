@@ -31,7 +31,7 @@ export const runningAtom = atom(
     if (start) {
       set(
         timerRefAtom,
-        window.setInterval(() => {
+        setInterval(() => {
           set(incrementSecondsAtom, 0.1);
         }, 100)
       );
