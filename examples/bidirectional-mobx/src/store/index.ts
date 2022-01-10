@@ -18,6 +18,18 @@ class ApplicationStore {
     );
   }
 
+  public async incrementSeconds(amount = 0.1) {
+    // Increment Seconds
+    this.seconds += amount;
+
+    // Fetch dummy Data
+    if (this.seconds > 2) {
+      const response = await fetch('/data.json');
+      const parsedJson = await response.json();
+      this.todos = parsedJson;
+    }
+  }
+
   public toggleTimer() {
     this.running = !this.running;
 
@@ -29,18 +41,6 @@ class ApplicationStore {
 
     // Start Interval
     if (this.running) this.timerRef = setInterval(this.incrementSeconds, 100);
-  }
-
-  public async incrementSeconds() {
-    // Increment Seconds
-    this.seconds += 0.1;
-
-    // Fetch dummy Data
-    if (this.seconds > 2) {
-      const response = await fetch('/data.json');
-      const parsedJson = await response.json();
-      this.todos = parsedJson;
-    }
   }
 }
 

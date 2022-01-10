@@ -16,7 +16,7 @@ export const runningAtom = atom({ key: 'running', default: false });
 export const useStopwatch = () => {
   const [seconds, setSeconds] = useRecoilState(secondsAtom);
   const setTodos = useSetRecoilState(todosAtom);
-  const running = useRecoilValue(runningAtom);
+  const isRunning = useRecoilValue(runningAtom);
 
   // Fetch dummy Data
   useEffect(() => {
@@ -31,7 +31,7 @@ export const useStopwatch = () => {
   }, [seconds > 2]);
 
   useEffect(() => {
-    if (running) {
+    if (isRunning) {
       // Start Interval
       const interval = setInterval(() => {
         setSeconds((seconds) => seconds + 0.1);
@@ -40,5 +40,5 @@ export const useStopwatch = () => {
       // Clear Interval
       return () => clearInterval(interval);
     }
-  }, [running]);
+  }, [isRunning]);
 };
