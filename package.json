@@ -1,0 +1,29 @@
+{
+  "name": "dsma",
+  "private": true,
+  "description": "Discover State Management Alternatives",
+  "repository": "https://github.com/bennodev19/dsma",
+  "author": "@bennodev19",
+  "license": "MIT",
+  "scripts": {
+    "start": "concurrently \"lerna run start:dev --parallel\"",
+    "clean": "npm run clean:projects && npm run clean:top",
+    "clean:top": "shx rm -fr node_modules || true",
+    "clean:projects": "concurrently \"lerna run clean --parallel\""
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.9.0",
+    "@typescript-eslint/parser": "^5.9.0",
+    "concurrently": "^7.0.0",
+    "eslint": "^8.6.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "lerna": "^4.0.0",
+    "prettier": "^2.5.1",
+    "shx": "^0.3.4",
+    "typescript": "^4.5.4"
+  },
+  "workspaces": [
+    "examples/*"
+  ]
+}
