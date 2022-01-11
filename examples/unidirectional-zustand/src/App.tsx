@@ -6,7 +6,7 @@ import TodosView from './components/TodosView';
 
 const App: React.FC = () => (
   <Container>
-    <Title>Bidirectional - Mobx</Title>
+    <Title>Unidirectional - Zustand</Title>
     <TimerDisplayView />
     <TimerToggleView />
     <TodosView />
