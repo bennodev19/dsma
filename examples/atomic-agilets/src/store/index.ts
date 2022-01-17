@@ -23,8 +23,8 @@ export const { toggleTimer } = (() => {
   let timerRef: null | number = null;
 
   const toggleTimer = () => {
-    const isRunning = !IS_RUNNING.value;
-    IS_RUNNING.set(isRunning);
+    const nextIsRunning = !IS_RUNNING.value;
+    IS_RUNNING.set(nextIsRunning);
 
     // Clear Interval
     if (timerRef != null) {
@@ -33,7 +33,7 @@ export const { toggleTimer } = (() => {
     }
 
     // Start Interval
-    if (isRunning) timerRef = setInterval(incrementSeconds, 100);
+    if (nextIsRunning) timerRef = setInterval(incrementSeconds, 100);
   };
   return { toggleTimer };
 })();
