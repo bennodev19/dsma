@@ -1,15 +1,14 @@
 import create from 'zustand';
 
-interface ApplicationState {
+interface TimerState {
   seconds: number;
   isRunning: boolean;
-  todos?: string[];
   intervalRef: number | null;
   toggleTimer: () => void;
   incrementSeconds: () => void;
 }
 
-export const useApplicationState = create<ApplicationState>((set, get) => ({
+export const useTimerStore = create<TimerState>((set, get) => ({
   seconds: 0,
   isRunning: false,
   todos: undefined,
@@ -36,10 +35,22 @@ export const useApplicationState = create<ApplicationState>((set, get) => ({
     }));
 
     // Fetch dummy Data
-    if (get().seconds > 2.0 && !get().todos) {
+    if (get().seconds > 2.0 && !useTodosStore.getState().todos) {
       const response = await fetch('/data.json');
       const parsedJson = await response.json();
-      set({ todos: parsedJson });
+      useTodosStore.setState({ todos: parsedJson });
     }
+  },
+}));
+
+interface TodosState {
+  todos?: string[];
+  setTodos: (todos: string[] | undefined) => void;
+}
+
+export const useTodosStore = create<TodosState>((set, get) => ({
+  todos: undefined,
+  setTodos: (todos) => {
+    set({ todos: todos });
   },
 }));

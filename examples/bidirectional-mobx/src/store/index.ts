@@ -1,9 +1,8 @@
 import { makeAutoObservable, observable } from 'mobx';
 
-class ApplicationStore {
+class TimerStore {
   public seconds = 0;
-  public running = false;
-  public todos?: string[] = undefined;
+  public isRunning = false;
   private timerRef: number | null = null;
 
   constructor() {
@@ -11,8 +10,7 @@ class ApplicationStore {
       this,
       {
         seconds: observable,
-        running: observable,
-        todos: observable,
+        isRunning: observable,
       },
       { autoBind: true }
     );
@@ -26,12 +24,12 @@ class ApplicationStore {
     if (this.seconds > 2) {
       const response = await fetch('/data.json');
       const parsedJson = await response.json();
-      this.todos = parsedJson;
+      todosStore.setTodos(parsedJson);
     }
   }
 
   public toggleTimer() {
-    this.running = !this.running;
+    this.isRunning = !this.isRunning;
 
     // Clear Interval
     if (this.timerRef != null) {
@@ -40,10 +38,27 @@ class ApplicationStore {
     }
 
     // Start Interval
-    if (this.running) this.timerRef = setInterval(this.incrementSeconds, 100);
+    if (this.isRunning) this.timerRef = setInterval(this.incrementSeconds, 100);
   }
 }
 
-const store = new ApplicationStore();
+class TodosStore {
+  public todos?: string[] = undefined;
 
-export default store;
+  constructor() {
+    makeAutoObservable(
+      this,
+      {
+        todos: observable,
+      },
+      { autoBind: true }
+    );
+  }
+
+  public setTodos(todos: string[]) {
+    this.todos = todos;
+  }
+}
+
+export const timerStore = new TimerStore();
+export const todosStore = new TodosStore();

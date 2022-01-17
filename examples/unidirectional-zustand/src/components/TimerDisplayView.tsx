@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useApplicationState } from '../store';
+import { useTimerStore } from '../store';
 
 const TimerDisplayView: React.FC = () => {
-  const { seconds } = useApplicationState();
+  // Selector
+  const seconds = useTimerStore((store) => store.seconds);
 
   return (
     <Text>

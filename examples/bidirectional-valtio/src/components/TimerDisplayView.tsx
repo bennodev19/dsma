@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSnapshot } from 'valtio';
-import { store } from '../store';
+import { timerStore } from '../store';
 
 const TimerDisplayView: React.FC = () => {
-  const { seconds } = useSnapshot(store);
+  const { seconds } = useSnapshot(timerStore);
 
   return (
     <Text>

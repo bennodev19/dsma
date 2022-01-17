@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { observer } from 'mobx-react-lite';
-import store from '../store';
+import { timerStore } from '../store';
 
 const TimerDisplayView: React.FC = () => {
+  const { seconds } = timerStore;
   return (
     <Text>
-      <span>Stopwatch:</span> <span>{store.seconds.toFixed(1)}</span>
+      <span>Stopwatch:</span> <span>{seconds.toFixed(1)}</span>
     </Text>
   );
 };

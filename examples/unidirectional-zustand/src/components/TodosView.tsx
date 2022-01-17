@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useApplicationState } from '../store';
+import { useTodosStore } from '../store';
 
 const TodosView: React.FC = () => {
-  const { todos } = useApplicationState();
+  const { todos } = useTodosStore();
 
   return (
     <Container>

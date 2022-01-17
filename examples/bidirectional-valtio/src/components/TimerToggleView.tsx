@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSnapshot } from 'valtio';
-import { store, toggleTimer } from '../store';
+import { timerStore, toggleTimer } from '../store';
 
 const TimerToggleView: React.FC = () => {
-  const { isRunning } = useSnapshot(store);
+  const { isRunning } = useSnapshot(timerStore);
 
   return (
     <Container>

@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSnapshot } from 'valtio';
-import { store } from '../store';
+import { todosStore } from '../store';
 
 const TodosView: React.FC = () => {
-  const { todos } = useSnapshot(store);
+  const { todos } = useSnapshot(todosStore);
 
   return (
     <Container>

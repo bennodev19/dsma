@@ -1,15 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { observer } from 'mobx-react-lite';
-import store from '../store';
+import { todosStore } from '../store';
 
 const TodosView: React.FC = () => {
+  const { todos } = todosStore;
   return (
     <Container>
       <Title>Data</Title>
-      <Text>
-        {store.todos != null ? JSON.stringify(store.todos) : 'No data fetched!'}
-      </Text>
+      <Text>{todos != null ? JSON.stringify(todos) : 'No data fetched!'}</Text>
     </Container>
   );
 };

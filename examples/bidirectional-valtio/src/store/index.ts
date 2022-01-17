@@ -1,26 +1,32 @@
 import { proxy } from 'valtio';
 
-interface ApplicationState {
+type TodosStore = {
+  todos?: string[];
+};
+
+type TimerStore = {
   seconds: number;
   isRunning: boolean;
-  todos?: string[];
-}
+};
 
-export const store = proxy<ApplicationState>({
+export const timerStore = proxy<TimerStore>({
   seconds: 0,
   isRunning: false,
+});
+
+export const todosStore = proxy<TodosStore>({
   todos: undefined,
 });
 
 export const incrementSeconds = async (amount = 0.1) => {
   // Increment Seconds
-  store.seconds += amount;
+  timerStore.seconds += amount;
 
   // Fetch dummy Data
-  if (store.seconds > 2 && store.todos == null) {
+  if (timerStore.seconds > 2 && todosStore.todos == null) {
     const response = await fetch('/data.json');
     const parsedJson = await response.json();
-    store.todos = parsedJson.todos;
+    todosStore.todos = parsedJson.todos;
   }
 };
 
@@ -28,7 +34,7 @@ export const { toggleTimer } = (() => {
   let timerRef: null | number = null;
 
   const toggleTimer = () => {
-    store.isRunning = !store.isRunning;
+    timerStore.isRunning = !timerStore.isRunning;
 
     // Clear Interval
     if (timerRef != null) {
@@ -36,7 +42,7 @@ export const { toggleTimer } = (() => {
       timerRef = null;
     }
 
-    if (store.isRunning) timerRef = setInterval(incrementSeconds, 100);
+    if (timerStore.isRunning) timerRef = setInterval(incrementSeconds, 100);
   };
   return { toggleTimer };
 })();

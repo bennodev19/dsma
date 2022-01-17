@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useApplicationState } from '../store';
+import { useTimerStore } from '../store';
 
 const TimerToggleView: React.FC = () => {
-  const { isRunning, toggleTimer } = useApplicationState();
+  const { isRunning, toggleTimer } = useTimerStore();
 
   return (
     <Container>
