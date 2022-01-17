@@ -6,7 +6,7 @@ import TodosView from './components/TodosView';
 
 const App: React.FC = () => (
   <Container>
-    <Title>Unidirectional - Redux-Toolkit</Title>
+    <Title>Unidirectional - Redux</Title>
     <TimerDisplayView />
     <TimerToggleView />
     <TodosView />

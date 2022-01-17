@@ -24,13 +24,13 @@ const timerSlice = createSlice({
   } as TimerSlice,
   reducers: {
     increment: (state) => {
-      // OK, because immer makes it immutable under the hood
+      // OK, because 'immer' makes the state immutable under the hood
       state.seconds += 0.1;
     },
     toggle: (state) => {
       state.isRunning = !state.isRunning;
     },
-    setTimeRef: (state, action: PayloadAction<TimerSlice['timerRef']>) => {
+    setTimerRef: (state, action: PayloadAction<TimerSlice['timerRef']>) => {
       state.timerRef = action.payload;
     },
   },
@@ -49,7 +49,7 @@ const todosSlice = createSlice({
   // https://redux-toolkit.js.org/api/createAsyncThunk
   // Add reducers for additional action types here, and handle loading state as needed
   extraReducers: (builder) => {
-    // Fetch Reducer, that is called when async thunk is fulfilled/resolved
+    // Fetch Reducer, that is called when async thunk (fetchTodos() method) is fulfilled/resolved
     builder.addCase(fetchTodos.fulfilled, (state, action) => {
       state.todos = action.payload.todos;
     });
@@ -62,12 +62,11 @@ const todosSlice = createSlice({
 
 // Can maybe made cleaner by combinging the
 export const incrementSeconds = () => {
-  const { timer, todos } = store.getState();
-
   // Increment Seconds
   store.dispatch(increment());
 
   // Fetch dummy Data
+  const { timer, todos } = store.getState();
   if (timer.seconds > 2 && todos.todos == null) store.dispatch(fetchTodos());
 };
 
@@ -79,14 +78,14 @@ export const toggleTimer = () => {
   // Clear Interval
   if (timer.timerRef != null) {
     clearInterval(timer.timerRef);
-    store.dispatch(setTimeRef(null));
+    store.dispatch(setTimerRef(null));
   }
 
   // Start Interval
   // Note: Not using 'timer.isRunning' as the destructed timer
-  // has still the old 'isRunning' value before toggling it via 'toggle()'
+  // has still the old 'isRunning' value before toggling it via 'toggle()' (due to Redux destroys the reference when mutation)
   if (store.getState().timer.isRunning)
-    store.dispatch(setTimeRef(setInterval(() => incrementSeconds(), 100)));
+    store.dispatch(setTimerRef(setInterval(() => incrementSeconds(), 100)));
 };
 
 // https://redux-toolkit.js.org/api/createAsyncThunk
@@ -114,7 +113,7 @@ export const selectSeconds = (state: RootState) => state.timer.seconds;
 export const selectIsRunning = (state: RootState) => state.timer.isRunning;
 export const selectTodos = (state: RootState) => state.todos.todos;
 
-export const { increment, toggle, setTimeRef } = timerSlice.actions;
+export const { increment, toggle, setTimerRef } = timerSlice.actions;
 
 // =========================================================================================================
 // OLD tries

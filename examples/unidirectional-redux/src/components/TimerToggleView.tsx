@@ -9,7 +9,7 @@ const TimerToggleView: React.FC = () => {
 
   return (
     <Container>
-      <button onClick={() => dispatch(toggleTimer())}>
+      <button onClick={() => toggleTimer(dispatch)}>
         {isRunning ? 'Stop' : 'Start'}
       </button>
     </Container>

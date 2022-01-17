@@ -8,7 +8,7 @@ const TimerDisplayView: React.FC = () => {
 
   return (
     <Text>
-      <span>Stopwatch:</span> <span>{seconds.toFixed(1)}</span>
+      <span>Stopwatch:</span> <span>{seconds?.toFixed(1)}</span>
     </Text>
   );
 };

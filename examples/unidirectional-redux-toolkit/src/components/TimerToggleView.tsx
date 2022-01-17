@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectIsRunning, toggleTimer } from '../store';
 
 const TimerToggleView: React.FC = () => {
