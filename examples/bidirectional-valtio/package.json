@@ -2,7 +2,7 @@
   "name": "atomic-valtio",
   "version": "1.0.0",
   "scripts": {
-    "start:dev": "vite --port 3009",
+    "start": "vite --port 3009",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "clean": "shx rm -fr node_modules || true"

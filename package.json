@@ -6,7 +6,7 @@
   "author": "@bennodev19",
   "license": "MIT",
   "scripts": {
-    "start": "concurrently \"lerna run start:dev --parallel\"",
+    "start": "concurrently \"lerna run start --parallel\"",
     "clean": "npm run clean:projects && npm run clean:top",
     "clean:top": "shx rm -fr node_modules || true",
     "clean:projects": "concurrently \"lerna run clean --parallel\""

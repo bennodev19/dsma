@@ -2,7 +2,7 @@
   "name": "unidirectional-zustand",
   "version": "1.0.0",
   "scripts": {
-    "start:dev": "vite --port 3005",
+    "start": "vite --port 3005",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "clean": "shx rm -fr node_modules || true"

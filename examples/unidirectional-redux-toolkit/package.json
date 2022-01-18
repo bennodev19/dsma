@@ -2,7 +2,7 @@
   "name": "unidirectional-redux-toolkit",
   "version": "1.0.0",
   "scripts": {
-    "start:dev": "vite --port 3007",
+    "start": "vite --port 3007",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "clean": "shx rm -fr node_modules || true"
