@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import React from 'react';
 
 interface ApplicationState {
   seconds: number;
@@ -8,11 +8,13 @@ interface ApplicationState {
 }
 
 export const useApplicationState = (): ApplicationState => {
-  const [seconds, setSeconds] = useState(0);
-  const [isRunning, setIsRunning] = useState(false);
-  const [todos, setTodos] = useState<ApplicationState['todos']>(undefined);
+  const [seconds, setSeconds] = React.useState(0);
+  const [isRunning, setIsRunning] = React.useState(false);
+  const [todos, setTodos] =
+    React.useState<ApplicationState['todos']>(undefined);
 
-  useEffect(() => {
+  // Fetch dummy Data
+  React.useEffect(() => {
     const fetchDummyData = async () => {
       if (seconds > 2 && todos == null) {
         const response = await fetch('/data.json');
@@ -23,7 +25,7 @@ export const useApplicationState = (): ApplicationState => {
     fetchDummyData();
   }, [seconds > 2, todos == null]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (isRunning) {
       // Start Interval
       const timerRef = setInterval(function incrementSeconds() {
