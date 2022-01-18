@@ -35,5 +35,6 @@ export const { toggleTimer } = (() => {
     // Start Interval
     if (nextIsRunning) timerRef = setInterval(incrementSeconds, 100);
   };
+
   return { toggleTimer };
 })();

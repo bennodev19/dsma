@@ -24,7 +24,7 @@ class TimerStore {
     if (this.seconds > 2) {
       const response = await fetch('/data.json');
       const parsedJson = await response.json();
-      todosStore.setTodos(parsedJson);
+      todosStore.setTodos(parsedJson); // TODO can be optimized everywhere.. as this triggers a re-render all the time although the data was already fetched
     }
   }
 
